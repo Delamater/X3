@@ -1,0 +1,49 @@
+#<AdxTL>@(#)0.0.0.0 $Revision$
+$ACTION
+
+Case ACTION
+  When "RESTAURE" : Gosub SPERESTAURE
+Endcase
+
+Return
+
+$SPERESTAURE
+Local Char TABLE(250)
+Local Char ENTRYPOINTMSG(250)
+Local Char TSQL(255)(3)
+
+TABLE = [M:DIA]FICHIER
+ENTRYPOINTMSG = "Entry point RESTAURE from DOSINTEG used to reset the sequence number correctly. "
+ENTRYPOINTMSG += "Official R&D fix, request number 112274, is targeted for V7 patch 13"
+
+
+Local Integer NBERR
+#Trace is already open, no need to check, just write immediately
+Call ECR_TRACE(ENTRYPOINTMSG, 0)From GESECRAN
+
+#GTYPDBA = 5 = SQL Server
+
+If GTYPDBA = 2 | GTYPDBA = 3 Then
+
+  TSQL(0) = "IF EXISTS(SELECT SCHEMA_NAME(schema_id), name FROM sys.sequences WHERE   name = 'SEQ_GACCENTRYD' AND SCHEMA_NAME(schema_id) = 'SEED')"
+  TSQL(1) = "BEGIN ALTER SEQUENCE " + APPLI + ".SEQ_" + TABLE + " RESTART With " + num$(IDUNIQ) + " END "
+  TSQL(2) = "ELSE BEGIN DBCC CHECKIDENT('" + APPLI + "." + TABLE + "', RESEED, " + num$(IDUNIQ) + ") END"
+
+  #TSQL = "ALTER SEQUENCE SEED.SEQ_GACCENTRYD RESTART With 40885"
+  Execsql From "5" Sql TSQL(0..2)
+
+Else
+  #Use the old technique, which is slower, but needed if the server isn't SQL Server
+  #Onerrgo ERR_TRA
+  Local File =APPLI+"."+TABLE[SVG]
+  Onerrgo
+  While uniqid([SVG])<IDUNIQ
+  Wend
+  #Goto ERR_TRA
+  Close Local File [SVG]
+Endif
+
+End
+
+Return
+
