@@ -1,0 +1,4 @@
+Char FILES(50)
+Char DIRECTORY(100)
+DIRECTORY = "C:\temp"
+System FILES = "C:\temp\SampleWriter"
