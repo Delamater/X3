@@ -1,3 +1,4 @@
+-- Press Ctrl+Shift+M to replace template parameters
 -- Get Table Description by Abbreviation Or Name
 SELECT t.ABRFIC_0 TableAbreviation, t.CODFIC_0 TableName, txt.TEXTE_0
 FROM <X3 Folder Name,VARCHAR(255), AATCPROD >.ATABLE t
