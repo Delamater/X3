@@ -1,0 +1,10 @@
+#Within IMPSOH write the following and compile:
+
+
+# Just below the $Action label
+# This will write all the actions to somefile within the folder's
+# tmp firectory. You can see the order of the calls in this case
+Openo filpath('tmp', 'somefile', '') Using [ZFIL]
+Wrseq "Action: " + ACTION Using [ZFIL]
+Openo Using [ZFIL]
+
