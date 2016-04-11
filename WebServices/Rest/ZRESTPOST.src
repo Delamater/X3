@@ -1,0 +1,51 @@
+# Author:         Bob Delamater
+# Date:           04/11/2016
+# Description:    This code is an example on how to call a Microsoft Azure rest web service using a POST http method.
+#                 Note the addition of the use of API-Key and the inclusion of the Authorization within the header
+
+
+
+Funprog GETINC()
+
+#Retrun value
+Local Integer RETVAL
+
+#Inputs to web service
+Local Char WEBSERNAME (50)
+Local Char HTTPMETHOD (10)
+Local Char SUBURL(255)
+Local Char PCOD(100)(1..10)
+Local Char PVAL(100)(1..10)
+Local Char HCOD(100)(1..10)
+Local Char HVAL(100)(1..10)
+Local Clbfile MYDATA(0)
+
+Local Clbfile RESHEAD(0), RESBODY(0)
+
+#Setup values
+WEBSERNAME = "ZINCOMEPREDICTION"
+HTTPMETHOD = "POST"
+#SUBURL = ""
+
+HCOD(1)="Accept-Language"
+HVAL(1)='"fr, en-gb;q=0.8, en;q=0.7"'
+
+HCOD(2)="Content-Type"
+HVAL(2)= '"application/json"'
+
+HCOD(3) = 'Authorization'
+HVAL(3) = '"Bearer abc123"' #Get this from your web service provider
+
+Local Clbfile MYDATA
+MYDATA = '{"Inputs": {"input1": {"ColumnNames": ["age","workclass","fnlwgt","education","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-'
+&  + 'per-week","native-country"],"Values": [["39","value","0","value","0","value","value","value","value","value","0","0","0","value"],["0","value","0","value","0","value","value","value","value","v'
+&  + 'alue",'
+&  + '"0","0","0","value"]]}},"GlobalParameters": {}}'
+
+RETVAL=func ASYRRESTCLI.EXEC_REST_WS(WEBSERNAME, HTTPMETHOD, SUBURL, PCOD,PVAL,HCOD,HVAL, MYDATA, 0, "", RESHEAD, RESBODY)
+
+If RETVAL <> 200
+  [L]ASTATUS=fmet this.ASETERROR("", "Post failed with status: " +num$(RETVAL), [V]CST_AERROR)
+Else
+  Infbox num$(RESBODY)
+Endif
