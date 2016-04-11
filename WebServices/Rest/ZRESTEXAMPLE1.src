@@ -1,0 +1,24 @@
+Funprog GETCONTACT(ID)
+Value Integer ID()
+
+Local Integer RETVAL
+
+Local Char WEBSERNAME (50)
+Local Char HTTPMETHOD (10)
+Local Char SUBURL(255)
+Local Char PCOD(100)(1..10)
+Local Char PVAL(100)(1..10)
+Local Char HCOD(100)(1..10)
+Local Char HVAL(100)(1..10)
+
+WEBSERNAME = "ZTESTWEBSERVICE1"
+HTTPMETHOD = "GET"
+SUBURL = "/api/contact"
+Local Clbfile RESHEAD(0), RESBODY(0)
+
+# Call the web service and get only the "Name" value
+RETVAL=func ASYRRESTCLI.EXEC_REST_WS(WEBSERNAME, HTTPMETHOD, SUBURL, PCOD,PVAL,HCOD,HVAL,"{}", 0, "", RESHEAD, RESBODY)
+
+Infbox num$("Return Value: " + num$(RETVAL))
+Infbox num$(RESBODY)
+
