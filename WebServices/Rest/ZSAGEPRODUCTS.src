@@ -1,0 +1,45 @@
+# Author:         Bob Delamater
+# Date:           04/11/2016
+# Description:    This code is an example on how to call a rest web service using a GET http method.
+
+
+Funprog GETSAGEPRODUCTS()
+
+#Retrun value
+Local Integer RETVAL
+
+#Inputs to web service
+Local Char WEBSERNAME (50)
+Local Char HTTPMETHOD (10)
+Local Char SUBURL(255)
+Local Char PCOD(100)(1..10)
+Local Char PVAL(100)(1..10)
+Local Char HCOD(100)(1..10)
+Local Char HVAL(100)(1..10)
+Local Clbfile MYDATA(0)
+
+WEBSERNAME = "ZSAGEPRODUCTS"
+HTTPMETHOD = "GET"
+SUBURL = "/api/products"
+
+Local Clbfile RESHEAD(0), RESBODY(0)
+
+# Call the web service and get only the "Name" value
+RETVAL=func ASYRRESTCLI.EXEC_REST_WS(WEBSERNAME, HTTPMETHOD, SUBURL, PCOD,PVAL,HCOD,HVAL,"{}", 0, "", RESHEAD, RESBODY)
+
+#Dbgaff
+If RETVAL <> 200
+  [L]ASTATUS=fmet this.ASETERROR("", "Post failed with status: " +num$(RETVAL), [V]CST_AERROR)
+Else
+  Infbox num$(RESBODY)
+
+#Create a random file name
+  Local Char SUFFIX (5)
+  SUFFIX = sigma(1, 1+int(rnd(20)), chr$(int(rnd(25)+ascii("A"))))
+
+  #Store file here: ..\folders\SEED\tmp
+  Openo filpath('tmp', 'ZSAGEPRODUCTS_RESULT_' + SUFFIX, '') Using [ZREST]
+  Wrseq RESBODY Using [ZREST]
+  Openo Using [ZREST]
+
+Endif
