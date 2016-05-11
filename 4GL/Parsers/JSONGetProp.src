@@ -1,0 +1,44 @@
+# This will retrieve a value of a JSON property, at a specified ID location. 
+# This will not validate the JSON is built correctly
+# QUICK AND DIRTY PARSER
+# Example JSON: 
+
+# [
+#  {
+#   "Id":1,
+#   "Category":"Accounting",
+#   "Name":"Sage One"
+#  },
+#  {
+#   "Id":2,
+#   "Category":"Accounting",
+#   "Name":"Sage Live"
+#  },
+#  {
+#   "Id":3,
+#   "Category":"Accounting",
+#   "Name":"Sage 50"
+#  }
+# ]
+
+Funprog GETPROP(IDVALUE, JSONSTRING,VARNAME)
+Value Char IDVALUE
+Value Clbfile JSONSTRING
+Value Char VARNAME
+Local Integer I,J
+  #Find the starting position for the ID value
+  I=instr(1,JSONSTRING,'"Id":' + IDVALUE)
+  I=instr(I,JSONSTRING,'"'+VARNAME+'"')
+  If I
+    I=instr(I+len(VARNAME)+2,JSONSTRING,":")
+    If I
+      I=instr(I+1,JSONSTRING,'"')
+      If I
+        J=instr(I+1,JSONSTRING,'"')
+        If J
+          End seg$(JSONSTRING,I+1,J-1)
+        Endif
+      Endif
+    Endif
+  Endif
+End ""
