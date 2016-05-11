@@ -5,41 +5,86 @@
 
 Funprog GETSAGEPRODUCTS()
 
-#Retrun value
-Local Integer RETVAL
+  #Return value
+  Local Integer RETVAL
 
-#Inputs to web service
-Local Char WEBSERNAME (50)
-Local Char HTTPMETHOD (10)
-Local Char SUBURL(255)
-Local Char PCOD(100)(1..10)
-Local Char PVAL(100)(1..10)
-Local Char HCOD(100)(1..10)
-Local Char HVAL(100)(1..10)
-Local Clbfile MYDATA(0)
+  #Inputs to web service
+  Local Char WEBSERNAME (50)
+  Local Char HTTPMETHOD (10)
+  Local Char SUBURL(255)
+  Local Char PCOD(100)(1..10)
+  Local Char PVAL(100)(1..10)
+  Local Char HCOD(100)(1..10)
+  Local Char HVAL(100)(1..10)
+  Local Char RETURNFIELD(100)
+  Local Clbfile MYDATA(0)
 
-WEBSERNAME = "ZSAGEPRODUCTS"
-HTTPMETHOD = "GET"
-SUBURL = "/api/products"
 
-Local Clbfile RESHEAD(0), RESBODY(0)
+  WEBSERNAME = "ZSAGEPRODUCTS"
+  HTTPMETHOD = "GET"
+  SUBURL = "/api/products"
 
-# Call the web service and get only the "Name" value
-RETVAL=func ASYRRESTCLI.EXEC_REST_WS(WEBSERNAME, HTTPMETHOD, SUBURL, PCOD,PVAL,HCOD,HVAL,"{}", 0, "", RESHEAD, RESBODY)
+  RETURNFIELD = ""
+  Local Clbfile RESHEAD(0), RESBODY(0)
 
-#Dbgaff
-If RETVAL <> 200
-  [L]ASTATUS=fmet this.ASETERROR("", "Post failed with status: " +num$(RETVAL), [V]CST_AERROR)
-Else
-  Infbox num$(RESBODY)
+  # Call the web service and get only the "Name" value
+  RETVAL=func ASYRRESTCLI.EXEC_REST_WS(WEBSERNAME, HTTPMETHOD, SUBURL, PCOD,PVAL,HCOD,HVAL,"{}", 0, RETURNFIELD, RESHEAD, RESBODY)
 
-#Create a random file name
+  #Log results to a file located here: ..\folders\SEED\tmp
   Local Char SUFFIX (5)
   SUFFIX = sigma(1, 1+int(rnd(20)), chr$(int(rnd(25)+ascii("A"))))
-
-  #Store file here: ..\folders\SEED\tmp
   Openo filpath('tmp', 'ZSAGEPRODUCTS_RESULT_' + SUFFIX, '') Using [ZREST]
-  Wrseq RESBODY Using [ZREST]
-  Openo Using [ZREST]
 
-Endif
+  If RETVAL <> 200
+    Wrseq RESHEAD Using [ZREST]
+    Openo Using [ZREST]
+
+    Errbox(num$(RETVAL))
+    [L]ASTATUS=fmet this.ASETERROR("", "Post failed with status: " +num$(RETVAL), [V]CST_AERROR)
+
+  Else  #Valid results
+    #RESBODY contains the results in a good situation
+    Wrseq RESBODY Using [ZREST]
+    Openo Using [ZREST]
+
+  # Set screen properties
+    #Dbgaff
+    Local Char VALUES(50)(100,2)
+
+    VALUES(0,0) = "Category"
+    VALUES(0,1) = func GETPROP([M:ZSP0]ID, RESBODY, VALUES(0,0))
+    VALUES(1,0) = "Name"
+    VALUES(1,1) = func GETPROP([M:ZSP0]ID, RESBODY, VALUES(1,0))
+
+
+    [M:ZSP1]CATEGORY      = VALUES(0,1)
+    [M:ZSP1]PRODUCTNAME   = VALUES(1,1)
+    Affzo
+
+    Infbox num$(RESBODY)
+
+  Endif
+End
+
+#Must parse the JSON yourself for now
+Funprog GETPROP(IDVALUE, JSONSTRING,VARNAME)
+Value Char IDVALUE
+Value Clbfile JSONSTRING
+Value Char VARNAME
+Local Integer I,J
+  #Find the starting position for the ID value
+  I=instr(1,JSONSTRING,'"Id":' + IDVALUE)
+  I=instr(I,JSONSTRING,'"'+VARNAME+'"')
+  If I
+    I=instr(I+len(VARNAME)+2,JSONSTRING,":")
+    If I
+      I=instr(I+1,JSONSTRING,'"')
+      If I
+        J=instr(I+1,JSONSTRING,'"')
+        If J
+          End seg$(JSONSTRING,I+1,J-1)
+        Endif
+      Endif
+    Endif
+  Endif
+End ""
