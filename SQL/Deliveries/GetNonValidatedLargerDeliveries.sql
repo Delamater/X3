@@ -20,4 +20,5 @@ FROM LargeDeliveries ld
 		ON ld.DeliveryNumber = d.SDHNUM_0
 WHERE 
 	d.CFMFLG_0 = 1
-	AND ld.LineCount> 1000
+	AND ld.LineCount >= 100 AND ld.LineCount <= 200
+ORDER BY ld.LineCount DESC
