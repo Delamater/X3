@@ -8,6 +8,7 @@ FROM PROD.ATABZON t
 		ON t.NOLONG_0 = longText.NUMERO_0
 			AND longText.LAN_0 = 'ENG'
 WHERE 
-	CODFIC_0 = <Table Name, SYSNAME, 'SORDER'>
-	AND CODZONE_0 LIKE <Field Name, SYSNAME, 'SOH%'>
+	CODFIC_0 = '<Table Name, SYSNAME, SORDER>'
+	AND CODZONE_0 LIKE '<Field Name, SYSNAME, SOH%>'
 	
+
