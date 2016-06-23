@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="54165d97-608e-4d9e-9ce6-2de0e79789a8" activeEnvironment="Default" name="X3" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.LoadTestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="TestSuite 1"/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="TestRunner Path" value="C:\Program Files\SmartBear\SoapUI-5.2.1/bin"/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="LoadTest" value="LoadTest 2"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Print Report Statistics" value="false"/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="TestCase 1"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="ThreadCount" value=""/>
+  <con:entry key="Limit" value=""/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" id="d67cbd5f-5da6-4219-891d-342c41dcd58a" wsaVersion="NONE" name="CAdxWebServiceXmlCCSoapBinding" type="wsdl" bindingName="{http://www.adonix.com/WSS}CAdxWebServiceXmlCCSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8124//soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8124//soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl"><con:part><con:url>http://localhost:8124//soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.adonix.com/WSS" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wss="http://www.adonix.com/WSS" xmlns:intf="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--WSDL created by Apache Axis version: 1.4 Built on Apr 22, 2006 (06:55:48 PDT)-->
+  <wsdl:types>
+    <schema targetNamespace="http://www.adonix.com/WSS" xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <complexType name="CAdxCallContext">
+        <sequence>
+          <element name="codeLang" nillable="true" type="xsd:string"/>
+          <element name="poolAlias" nillable="true" type="xsd:string"/>
+          <element name="poolId" nillable="true" type="xsd:string"/>
+          <element name="requestConfig" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="CAdxMessage">
+        <sequence>
+          <element name="message" nillable="true" type="xsd:string"/>
+          <element name="type" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ArrayOfCAdxMessage">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="wss:CAdxMessage[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="CAdxTechnicalInfos">
+        <sequence>
+          <element name="busy" type="xsd:boolean"/>
+          <element name="changeLanguage" type="xsd:boolean"/>
+          <element name="changeUserId" type="xsd:boolean"/>
+          <element name="flushAdx" type="xsd:boolean"/>
+          <element name="loadWebsDuration" type="xsd:double"/>
+          <element name="nbDistributionCycle" type="xsd:int"/>
+          <element name="poolDistribDuration" type="xsd:double"/>
+          <element name="poolEntryIdx" type="xsd:int"/>
+          <element name="poolExecDuration" type="xsd:double"/>
+          <element name="poolRequestDuration" type="xsd:double"/>
+          <element name="poolWaitDuration" type="xsd:double"/>
+          <element name="processReport" nillable="true" type="xsd:string"/>
+          <element name="processReportSize" type="xsd:int"/>
+          <element name="reloadWebs" type="xsd:boolean"/>
+          <element name="resumitAfterDBOpen" type="xsd:boolean"/>
+          <element name="rowInDistribStack" type="xsd:int"/>
+          <element name="totalDuration" type="xsd:double"/>
+          <element name="traceRequest" nillable="true" type="xsd:string"/>
+          <element name="traceRequestSize" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <complexType name="CAdxResultXml">
+        <sequence>
+          <element name="messages" nillable="true" type="wss:ArrayOfCAdxMessage"/>
+          <element name="resultXml" nillable="true" type="xsd:string"/>
+          <element name="status" type="xsd:int"/>
+          <element name="technicalInfos" nillable="true" type="wss:CAdxTechnicalInfos"/>
+        </sequence>
+      </complexType>
+      <complexType name="CAdxParamKeyValue">
+        <sequence>
+          <element name="key" nillable="true" type="xsd:string"/>
+          <element name="value" nillable="true" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ArrayOfCAdxParamKeyValue">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="wss:CAdxParamKeyValue[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+      <complexType name="ArrayOf_xsd_string">
+        <complexContent>
+          <restriction base="soapenc:Array">
+            <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+          </restriction>
+        </complexContent>
+      </complexType>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="queryRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="listSize" type="xsd:int"/>
+  </wsdl:message>
+  <wsdl:message name="insertLinesResponse">
+    <wsdl:part name="insertLinesReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="getDataXmlSchemaResponse">
+    <wsdl:part name="getDataXmlSchemaReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectKeysResponse">
+    <wsdl:part name="actionObjectKeysReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="deleteRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+  </wsdl:message>
+  <wsdl:message name="runRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="inputXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="runResponse">
+    <wsdl:part name="runReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="queryResponse">
+    <wsdl:part name="queryReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="insertLinesRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="blocKey" type="xsd:string"/>
+    <wsdl:part name="lineKey" type="xsd:string"/>
+    <wsdl:part name="lineXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getDescriptionResponse">
+    <wsdl:part name="getDescriptionReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="deleteLinesRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="blocKey" type="xsd:string"/>
+    <wsdl:part name="lineKeys" type="wss:ArrayOf_xsd_string"/>
+  </wsdl:message>
+  <wsdl:message name="getDataXmlSchemaRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="actionCode" type="xsd:string"/>
+    <wsdl:part name="objectXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="modifyRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+    <wsdl:part name="objectXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="saveResponse">
+    <wsdl:part name="saveReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="getDescriptionRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectKeysRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="actionCode" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+  </wsdl:message>
+  <wsdl:message name="deleteLinesResponse">
+    <wsdl:part name="deleteLinesReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="actionObjectResponse">
+    <wsdl:part name="actionObjectReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part name="deleteReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="saveRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectXml" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="readRequest">
+    <wsdl:part name="callContext" type="wss:CAdxCallContext"/>
+    <wsdl:part name="publicName" type="xsd:string"/>
+    <wsdl:part name="objectKeys" type="wss:ArrayOfCAdxParamKeyValue"/>
+  </wsdl:message>
+  <wsdl:message name="readResponse">
+    <wsdl:part name="readReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:message name="modifyResponse">
+    <wsdl:part name="modifyReturn" type="wss:CAdxResultXml"/>
+  </wsdl:message>
+  <wsdl:portType name="CAdxWebServiceXmlCC">
+    <wsdl:operation name="run" parameterOrder="callContext publicName inputXml">
+      <wsdl:input message="wss:runRequest" name="runRequest"/>
+      <wsdl:output message="wss:runResponse" name="runResponse"/>
+      <wsdl:documentation>Run X3 sub program</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="save" parameterOrder="callContext publicName objectXml">
+      <wsdl:input message="wss:saveRequest" name="saveRequest"/>
+      <wsdl:output message="wss:saveResponse" name="saveResponse"/>
+      <wsdl:documentation>Create X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="delete" parameterOrder="callContext publicName objectKeys">
+      <wsdl:input message="wss:deleteRequest" name="deleteRequest"/>
+      <wsdl:output message="wss:deleteResponse" name="deleteResponse"/>
+      <wsdl:documentation>Delete X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="read" parameterOrder="callContext publicName objectKeys">
+      <wsdl:input message="wss:readRequest" name="readRequest"/>
+      <wsdl:output message="wss:readResponse" name="readResponse"/>
+      <wsdl:documentation>Read X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="query" parameterOrder="callContext publicName objectKeys listSize">
+      <wsdl:input message="wss:queryRequest" name="queryRequest"/>
+      <wsdl:output message="wss:queryResponse" name="queryResponse"/>
+      <wsdl:documentation>Get X3 objects list</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="getDescription" parameterOrder="callContext publicName">
+      <wsdl:input message="wss:getDescriptionRequest" name="getDescriptionRequest"/>
+      <wsdl:output message="wss:getDescriptionResponse" name="getDescriptionResponse"/>
+      <wsdl:documentation>Get X3 web service description regarding publication done in GESAWE</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="modify" parameterOrder="callContext publicName objectKeys objectXml">
+      <wsdl:input message="wss:modifyRequest" name="modifyRequest"/>
+      <wsdl:output message="wss:modifyResponse" name="modifyResponse"/>
+      <wsdl:documentation>Update X3 object</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="actionObject" parameterOrder="callContext publicName actionCode objectXml">
+      <wsdl:input message="wss:actionObjectRequest" name="actionObjectRequest"/>
+      <wsdl:output message="wss:actionObjectResponse" name="actionObjectResponse"/>
+      <wsdl:documentation>Execute specific action on X3 object providing XML flow</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="actionObjectKeys" parameterOrder="callContext publicName actionCode objectKeys">
+      <wsdl:input message="wss:actionObjectKeysRequest" name="actionObjectKeysRequest"/>
+      <wsdl:output message="wss:actionObjectKeysResponse" name="actionObjectKeysResponse"/>
+      <wsdl:documentation>Execute specific action on X3 object providing keys</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="getDataXmlSchema" parameterOrder="callContext publicName">
+      <wsdl:input message="wss:getDataXmlSchemaRequest" name="getDataXmlSchemaRequest"/>
+      <wsdl:output message="wss:getDataXmlSchemaResponse" name="getDataXmlSchemaResponse"/>
+      <wsdl:documentation>Get X3 web service schema regarding publication done in GESAWE</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="insertLines" parameterOrder="callContext publicName objectKeys blocKey lineKey lineXml">
+      <wsdl:input message="wss:insertLinesRequest" name="insertLinesRequest"/>
+      <wsdl:output message="wss:insertLinesResponse" name="insertLinesResponse"/>
+      <wsdl:documentation>NOT YET IMPLEMENTED !!!</wsdl:documentation>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLines" parameterOrder="callContext publicName objectKeys blocKey lineKeys">
+      <wsdl:input message="wss:deleteLinesRequest" name="deleteLinesRequest"/>
+      <wsdl:output message="wss:deleteLinesResponse" name="deleteLinesResponse"/>
+      <wsdl:documentation>Remove lines from X3 object table</wsdl:documentation>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CAdxWebServiceXmlCCSoapBinding" type="wss:CAdxWebServiceXmlCC">
+    <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="run">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="runRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="runResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="save">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="saveRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="saveResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="deleteRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="readRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="readResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="query">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="queryRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="queryResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDescription">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getDescriptionRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="getDescriptionResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modify">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="modifyRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="modifyResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actionObject">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="actionObjectRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="actionObjectResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actionObjectKeys">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="actionObjectKeysRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="actionObjectKeysResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDataXmlSchema">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getDataXmlSchemaRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="getDataXmlSchemaResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertLines">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="insertLinesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="insertLinesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLines">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="deleteLinesRequest">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:input>
+      <wsdl:output name="deleteLinesResponse">
+        <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.adonix.com/WSS" use="encoded"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CAdxWebServiceXmlCCService">
+    <wsdl:port binding="wss:CAdxWebServiceXmlCCSoapBinding" name="CAdxWebServiceXmlCC">
+      <wsdlsoap:address location="http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"/>
+    </wsdl:port>
+    <wsdl:documentation>This SOAP web service allows to call X3 sub programs and/or to manipulate X3 objects trough CRUD and specifics methods</wsdl:documentation>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint></con:endpoints><con:operation id="f0fc1cca-9d55-4570-8c30-a24c4f8624b0" isOneWay="false" action="" name="actionObject" bindingOperationName="actionObject" type="Request-Response" outputName="actionObjectResponse" inputName="actionObjectRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="45d0b701-6858-4f75-8638-c196ee32b51d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:actionObject soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <actionCode xsi:type="xsd:string">?</actionCode>\r
+         <objectXml xsi:type="xsd:string">?</objectXml>\r
+      </wss:actionObject>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/actionObjectRequest"/></con:call></con:operation><con:operation id="2c974129-6928-4949-9bf4-3c015a73b2b0" isOneWay="false" action="" name="actionObjectKeys" bindingOperationName="actionObjectKeys" type="Request-Response" outputName="actionObjectKeysResponse" inputName="actionObjectKeysRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3f06659a-3895-4b94-a7f7-730bb86a06a1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:actionObjectKeys soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <actionCode xsi:type="xsd:string">?</actionCode>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+      </wss:actionObjectKeys>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/actionObjectKeysRequest"/></con:call></con:operation><con:operation id="583a4aff-59d7-44fb-ab7a-ca9342900487" isOneWay="false" action="" name="delete" bindingOperationName="delete" type="Request-Response" outputName="deleteResponse" inputName="deleteRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c981bad8-aa25-4d79-9bf8-556c08c3cfb6" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:delete soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+      </wss:delete>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteRequest"/></con:call></con:operation><con:operation id="dbec01ba-1057-4460-a42b-519cbd4b6188" isOneWay="false" action="" name="deleteLines" bindingOperationName="deleteLines" type="Request-Response" outputName="deleteLinesResponse" inputName="deleteLinesRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9e0a4f3e-cef1-489a-bf5f-85c2ea770bfa" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:deleteLines soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+         <blocKey xsi:type="xsd:string">?</blocKey>\r
+         <lineKeys xsi:type="wss:ArrayOf_xsd_string" soapenc:arrayType="xsd:string[]"/>\r
+      </wss:deleteLines>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/deleteLinesRequest"/></con:call></con:operation><con:operation id="710c8fb8-c93f-4382-8dd4-b98c321c2a61" isOneWay="false" action="" name="getDataXmlSchema" bindingOperationName="getDataXmlSchema" type="Request-Response" outputName="getDataXmlSchemaResponse" inputName="getDataXmlSchemaRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fef288ca-195e-48c4-a081-694d8c75eb9b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:getDataXmlSchema soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+      </wss:getDataXmlSchema>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/getDataXmlSchemaRequest"/></con:call></con:operation><con:operation id="af72a272-db62-49c7-a76e-05591e85f248" isOneWay="false" action="" name="getDescription" bindingOperationName="getDescription" type="Request-Response" outputName="getDescriptionResponse" inputName="getDescriptionRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c7774285-740f-4a4a-8452-7b1ff14dd38b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:getDescription soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+      </wss:getDescription>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/getDescriptionRequest"/></con:call></con:operation><con:operation id="a86291ac-d5b9-4847-a9dd-4235537cc4e1" isOneWay="false" action="" name="insertLines" bindingOperationName="insertLines" type="Request-Response" outputName="insertLinesResponse" inputName="insertLinesRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b7d5e742-e84c-453f-842a-13a4191d3a17" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:insertLines soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+         <blocKey xsi:type="xsd:string">?</blocKey>\r
+         <lineKey xsi:type="xsd:string">?</lineKey>\r
+         <lineXml xsi:type="xsd:string">?</lineXml>\r
+      </wss:insertLines>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/insertLinesRequest"/></con:call></con:operation><con:operation id="37b6f1ce-d7a1-405b-b284-c85a2fcea962" isOneWay="false" action="" name="modify" bindingOperationName="modify" type="Request-Response" outputName="modifyResponse" inputName="modifyRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2b38e218-78ed-4591-98aa-e89dd904ccad" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:modify soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+         <objectXml xsi:type="xsd:string">?</objectXml>\r
+      </wss:modify>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/modifyRequest"/></con:call></con:operation><con:operation id="079a1d62-a296-40dc-83e7-06bc7b2bc64d" isOneWay="false" action="" name="query" bindingOperationName="query" type="Request-Response" outputName="queryResponse" inputName="queryRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e62ab29a-a309-4e12-b39a-c9b04e1801bd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:query soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+         <listSize xsi:type="xsd:int">?</listSize>\r
+      </wss:query>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/queryRequest"/></con:call></con:operation><con:operation id="065102f7-9d15-411b-9fc5-d7fb09818537" isOneWay="false" action="" name="read" bindingOperationName="read" type="Request-Response" outputName="readResponse" inputName="readRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c73fec78-48a3-4be2-933a-f119ee266f95" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:read soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]"/>\r
+      </wss:read>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/readRequest"/></con:call><con:call id="ddee2646-1c9d-4221-bcfd-6388914acdc3" name="Req1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:read soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">POOL1</poolAlias>\r
+            <poolId xsi:type="xsd:string"></poolId>\r
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ZBPC</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+         	<key>BPCNUM</key>
+         	<value>AO001</value>
+         </objectKeys>\r
+      </wss:read>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/readRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="4176365b-1e43-441b-8c4a-f80a4a7fc852" isOneWay="false" action="" name="run" bindingOperationName="run" type="Request-Response" outputName="runResponse" inputName="runRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6eecbc75-cf3c-4630-8bab-58facfaff5cd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:run soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <inputXml xsi:type="xsd:string">?</inputXml>\r
+      </wss:run>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/runRequest"/></con:call></con:operation><con:operation id="c27ef67a-c62f-4119-a0dc-f2f1f24fb737" isOneWay="false" action="" name="save" bindingOperationName="save" type="Request-Response" outputName="saveResponse" inputName="saveRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b7fff0cb-46cb-45f6-a3d3-e99118f96f70" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">?</codeLang>\r
+            <poolAlias xsi:type="xsd:string">?</poolAlias>\r
+            <poolId xsi:type="xsd:string">?</poolId>\r
+            <requestConfig xsi:type="xsd:string">?</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">?</publicName>\r
+         <objectXml xsi:type="xsd:string">?</objectXml>\r
+      </wss:save>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/saveRequest"/></con:call></con:operation></con:interface><con:testSuite id="c1aa2e88-327a-4665-902b-3f16d9162d97" name="TestSuite 3"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a6564098-ec76-470c-87bd-1580a41ee902" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" id="cb2d6fbb-1ca7-4315-9534-02e5e4240d51" name="read - Req1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CAdxWebServiceXmlCCSoapBinding</con:interface><con:operation>read</con:operation><con:request name="read - Req1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="e0c8d766-c259-40f0-9eb0-fce7aacfa36c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wss:read soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <callContext xsi:type="wss:CAdxCallContext">\r
+            <codeLang xsi:type="xsd:string">ENG</codeLang>\r
+            <poolAlias xsi:type="xsd:string">POOL1</poolAlias>\r
+            <poolId xsi:type="xsd:string"></poolId>\r
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>\r
+         </callContext>\r
+         <publicName xsi:type="xsd:string">ZBPC</publicName>\r
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]">
+         	<key>BPCNUM</key>
+         	<value>AO001</value>
+         </objectKeys>\r
+      </wss:read>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="61c96aad-9251-4fbc-9353-73b771a10642" name="SOAP Response"/><con:assertion type="XPath Match" id="301ee2b8-0011-421a-a6b5-a6593b024aea" name="XPath Match" disabled="true"><con:configuration><path>declare namespace sam='Record does not exist';
+matches(//multiRef/message/text(),'Record does not exist')</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="301ee2b8-0011-421a-a6b5-a6593b024aea" name="XPath Match2"><con:configuration><path>declare namespace sam='Record does not exist';
+matches(//multiRef/message/text(),'Record does not exist') != true()</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:username>admin</con:username><con:password>admin</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.adonix.com/WSS/CAdxWebServiceXmlCC/readRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest id="dbd76804-9a55-43eb-a000-d736966d1c18" name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Variance</con:type><con:config><interval>60000</interval><variance>0.5</variance></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
