@@ -21,12 +21,10 @@ WHERE
 		'ITMMVT',    
 		'ITMMVTHIS',  
 		'ITMFACILIT', 
-		'ITMCOST',    
 		'STOLOT',    
 		'STOLOTFCY',  
 		'STOCK',     
 		'STOCOST',  
-		'STOJOU', 
 		'STOJOU', 
 		'STOVALWRK', 
 		'STOVALCUM',  
@@ -40,7 +38,8 @@ WHERE
 		'PRETURN',   
 		'PRETURND',   
 		'BPARTNER',
-		'PINVOICED'
+		'PINVOICED',
+		'ITMWRH'
 	)
 						
 
