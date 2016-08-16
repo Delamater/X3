@@ -61,3 +61,24 @@ SELECT 1, 'Record Count: ' + CAST(@rowCnt AS VARCHAR(25))
 SELECT *
 FROM dbo.ResultsTable
 
+
+
+IF OBJECT_ID('uspFindNonAsciiFields', 'P') IS NULL
+BEGIN
+	SELECT 'uspFindNonAsciiFields does not exist. Please compile this stored procedure before continuing. End of script. ' ScriptFailure
+	RETURN -- End script
+END
+
+
+DECLARE @ObjectIDs AS dbo.ObjectIds
+INSERT INTO @ObjectIDs(ObjectID, SchemaName, TableName)
+SELECT t.object_id, s.name, t.name
+FROM sys.tables t
+	INNER JOIN sys.schemas s
+		ON s.schema_id = t.schema_id
+		AND t.name IN
+		(
+			'BPCUSTOMER', 'CONTACT', 'CONTACTCRM'
+		)
+WHERE s.name = 'SEED'
+EXEC uspFindNonAsciiFields @ObjectIDs, @MinAscii = 31, @MaxAscii = 126
