@@ -55,10 +55,21 @@ else
 
 }
 $SleepTime = 500
-[Microsoft.VisualBasic.Interaction]::AppActivate(8596)
+[Microsoft.VisualBasic.Interaction]::AppActivate(8544)
 For ($i = 0; $i -le 500; $i++)
 {	
-	[System.Windows.Forms.SendKeys]::SendWait(“W006074”)
+
+$RandVal = Get-Random -Minimum 1 -Maximum 5
+switch ($RandVal)
+{
+	1 {[System.Windows.Forms.SendKeys]::SendWait(“W006299”)}
+	2 {[System.Windows.Forms.SendKeys]::SendWait(“W006264”)}
+	3 {[System.Windows.Forms.SendKeys]::SendWait(“W006273”)}
+	4 {[System.Windows.Forms.SendKeys]::SendWait(“W006273”)}
+	5 {[System.Windows.Forms.SendKeys]::SendWait(“W006284”)}
+}
+
+	
 	start-sleep -Milliseconds $SleepTime
 	[System.Windows.Forms.SendKeys]::SendWait(“{TAB}”)
 	start-sleep -Milliseconds $SleepTime
