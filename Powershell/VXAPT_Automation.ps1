@@ -10,8 +10,6 @@ param(
 $HelpInfo = @'
 
 Function : Click-MouseButton
-By       : John Bartels
-Date     : 12/16/2012 
 Purpose  : Clicks the Specified Mouse Button
 Usage    : Click-MouseButton [-Help][-Button x]
            where      
