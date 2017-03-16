@@ -3,7 +3,7 @@
 --				with their associated description from the ATEXTE table
 -- Date:		01/21/2015
 --
--- Parameters:	This procedure is a template. Press control + m on your keyboard 
+-- Parameters:	This procedure is a template. Press control + shift + m on your keyboard 
 --				to replace the template parameters
 
 /************************************************************************/
