@@ -7,8 +7,8 @@ $SourceFolder = Read-Host -Prompt "Path to test:"
 $FullPathSourceFolder = "Q:\" + $SourceFolder
 $TargetFolder = "C:\Users\bdelamater\Google Drive\Sage\X3\WorkingFolder\Automation\Scripts"
 
-#$CopyResult = Copy-Item -Path $FullPathSourceFolder -Destination $TargetFolder -Recurse -Container -Force
-#if(-not $?) {write-warning "Copy Failed"}
+$CopyResult = Copy-Item -Path $FullPathSourceFolder -Destination $TargetFolder -Recurse -Container -Force
+if(-not $?) {write-warning "Copy Failed"}
 
 
 # Check local file list, look for the number of iterations
