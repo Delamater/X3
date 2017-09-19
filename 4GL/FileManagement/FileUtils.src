@@ -1,0 +1,25 @@
+Call DELETE_LOCKED_INDEX_FILE('CPTRPT')
+
+End
+#**
+#* <<<< WARNING: SCM USAGE ONLY >>>>
+#* If your SCM source file is locked and you cannot unlock it for continued development
+#* using regular techniques, such as the script editor's lock symbol button then
+#* this routine will remove the *.LCKsrc file in the TRT directory
+#*
+#* @param SOME_SOURCE_FILE The name of your source file
+#*!
+Subprog DELETE_LOCKED_INDEX_FILE(MYFILE)
+Value Char MYFILE()
+
+
+Local Integer ERR_CODE()
+
+ERR_CODE = Delfile(filpath('TRT',MYFILE,'LCKsrc',nomap))
+
+Case ERR_CODE
+  When 0    : Infbox MYFILE -"      : Deleted successfully"
+  When -20  : Infbox MYFILE -"      : File does not exist"
+  When -27  : Infbox MYFILE -"      : Access denied"
+Endcase
+End
