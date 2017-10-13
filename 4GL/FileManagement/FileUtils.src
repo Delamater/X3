@@ -1,15 +1,11 @@
-Call DELETE_LOCKED_INDEX_FILE('CPTRPT')
+Call DELETE_FILE('CPTRPT')
 
 End
 #**
-#* <<<< WARNING: SCM USAGE ONLY >>>>
-#* If your SCM source file is locked and you cannot unlock it for continued development
-#* using regular techniques, such as the script editor's lock symbol button then
-#* this routine will remove the *.LCKsrc file in the TRT directory
-#*
+#* Delete a file in the TRT directory. Can be expanded later to pass in other directories. 
 #* @param SOME_SOURCE_FILE The name of your source file
 #*!
-Subprog DELETE_LOCKED_INDEX_FILE(MYFILE)
+Subprog DELETE_FILE(MYFILE)
 Value Char MYFILE()
 
 
