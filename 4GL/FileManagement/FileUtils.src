@@ -1,5 +1,5 @@
 #**
-#* Delete a file in the TRT directory. Can be expanded later to pass in other directories. 
+#* Delete a file in the TRT directory. Can be expanded later to pass in other directories.
 #* @param SOME_SOURCE_FILE The name of your source file
 #* Example call:
 #*    Call DELETE_FILE('CPTRPT')
@@ -18,3 +18,15 @@ Case ERR_CODE
   When -27  : Infbox MYFILE -"      : Access denied"
 Endcase
 End
+
+
+#**
+#* Obtain a random string of text. This is useful for appending to files in a situation
+#* where you are creating log files for debugging and you need unique file names.
+#*!
+Funprog GET_RANDOM_STRING()
+Local Char SUFFIX (10)
+
+SUFFIX = sigma(1, 1+int(rnd(20)), chr$(int(rnd(25)+ascii("A"))))
+
+End SUFFIX
