@@ -1,9 +1,8 @@
-Call DELETE_FILE('CPTRPT')
-
-End
 #**
 #* Delete a file in the TRT directory. Can be expanded later to pass in other directories. 
 #* @param SOME_SOURCE_FILE The name of your source file
+#* Example call:
+#*    Call DELETE_FILE('CPTRPT')
 #*!
 Subprog DELETE_FILE(MYFILE)
 Value Char MYFILE()
