@@ -1,12 +1,16 @@
-# Support's technique for logging
-Subprog XLOG(MYTEXT)
-Value Char MYTEXT
+# Example Calls
+# 1. Parsing a JSON result:
+# If func FINDVAL(RESBODY, "WaitStatus")<>"WAIT" : Call XLOG(RESBODY,"BeforeChanges") : Endif
+#
+# You may need to change the data type of MYTEXT if you are passing something other than a clob file
+Subprog XLOG(MYTEXT, MYFILENAME)
+  Value Clbfile MYTEXT
+  Value Char MYFILENAME
+  Local Char SUFFIX (5)
 
-Openo filpath("tmp","XWIPLOG3","log") Using [XLOG]
-Wrseq "Ouvre section" Using [XLOG]
-Wrseq format$("D:YYYY[/]MM[/]DD",date$); Using [XLOG]
-Openo Using [XLOG]
+  SUFFIX = sigma(1, 1+int(rnd(20)), chr$(int(rnd(25)+ascii("A"))))
+  Openo filpath('tra', MYFILENAME + "_" + SUFFIX, '') Using [XLOG]
+  Wrseq MYTEXT Using [XLOG]
+  Openo Using [XLOG]
 
 End
-
-Call XLOG("Before OUVRE"-GUSER)
