@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wss:save soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <callContext xsi:type="wss:CAdxCallContext">
+            <codeLang xsi:type="xsd:string">ENG</codeLang>
+            <poolAlias xsi:type="xsd:string">BOB</poolAlias>
+            <poolId xsi:type="xsd:string"/>
+            <requestConfig xsi:type="xsd:string">adxwss.beautify=true</requestConfig>
+         </callContext>
+         <publicName xsi:type="xsd:string">CUST</publicName>
+         <objectKeys xsi:type="wss:ArrayOfCAdxParamKeyValue" soapenc:arrayType="wss:CAdxParamKeyValue[]" xmlns:soapenc="soapenc">
+          <key>BPCNUM</key>
+          <value>BOB1333</value>
+         </objectKeys>
+         <objectXml xsi:type="xsd:string"><![CDATA[
+         <?xml version="1.0" encoding="UTF-8"?>
+<PARAM>
+  <GRP ID="BPC0_1">
+    <FLD NAME="BCGCOD" type="Char">US</FLD>
+    <FLD MENULAB="Yes" MENULOCAL="1" NAME="BPCSTA" type="Integer">2</FLD>
+    <FLD NAME="BPCNUM" type="Char">SF-US-000002641</FLD>
+  </GRP>
+  <GRP ID="BPRC_1">
+    <FLD NAME="CRY" type="Char">US</FLD>
+    <FLD NAME="LAN" type="Char">ENG</FLD>
+    <FLD NAME="CUR" type="Char">USD</FLD>
+    <LST NAME="BPRNAM" SIZE="1" type="Char">
+      <ITM>Bobs Burgers</ITM>
+    </LST>
+  </GRP>
+  <GRP ID="BPC3_1">
+    <FLD NAME="BPAINV" TYPE="Char">BILL</FLD>
+    <FLD NAME="BPAPYR" TYPE="Char">BILL</FLD>
+  </GRP>
+  <GRP ID="BPC3_2">
+    <FLD NAME="VACBPR" TYPE="Char">NTX</FLD>
+  </GRP>
+  <TAB DIM="30" ID="BPAC_1" SIZE="1">
+    <LIN NUM="1">
+      <FLD NAME="CODADR" TYPE="Char">BILL</FLD>
+      <FLD NAME="BPACRY" TYPE="Char">US</FLD>
+      <FLD NAME="ADDLIG1" TYPE="Char">1111 Billing Street</FLD>
+      <FLD NAME="ADDLIG2" TYPE="Char">Suite 111</FLD>
+      <FLD NAME="ADDLIG3" TYPE="Char">11th Floor</FLD>
+      <FLD NAME="POSCOD" TYPE="Char">923450000</FLD>
+      <FLD NAME="CTY" TYPE="Char">Schenectady</FLD>
+      <FLD NAME="SAT" TYPE="Char">NY</FLD>
+      <FLD NAME="TEL1" TYPE="Char">1114567890</FLD>
+      <FLD NAME="TEL2" TYPE="Char">2224567890</FLD>
+      <FLD NAME="FCYWEB" TYPE="Char">www.bobsburgers.com</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="BPAADDFLG" type="Integer">2</FLD>
+    </LIN>
+  </TAB>
+  <TAB DIM="30" ID="BPC4_1" SIZE="1">
+    <LIN NUM="1">
+      <FLD NAME="BPAADD" TYPE="Char">BILL</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="NPRFLG" type="Integer">1</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="NDEFLG" type="Integer">1</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="UVYDAY1" type="Integer">2</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="UVYDAY2" type="Integer">1</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="UVYDAY3" type="Integer">2</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="UVYDAY4" type="Integer">1</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="UVYDAY5" type="Integer">2</FLD>
+      <FLD MENULAB="No" MENULOCAL="1" NAME="UVYDAY6" type="Integer">1</FLD>
+      <FLD MENULAB="No" MENULOCAL="1" NAME="UVYDAY7" type="Integer">1</FLD>
+      <FLD NAME="EECINCRAT" type="Decimal">0</FLD>
+      <FLD MENULAB="Outside EU" MENULOCAL="236" NAME="EECLOC" type="Integer">1</FLD>
+      <FLD MENULAB="Yes" MENULOCAL="1" NAME="BPDADDFLG" type="Integer">2</FLD>
+    </LIN>
+  </TAB>
+</PARAM>
+  
+         ]]></objectXml>
+      </wss:save>
+   </soapenv:Body>
+</soapenv:Envelope>
