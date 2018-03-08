@@ -1,9 +1,9 @@
 /********************************************************************************************
 * Author:		Bob Delamater
-* Description:	Convert all existing ROWID indexes to clustered. 
-*				Retain primary key and unique attribute in all cases. 
-*				Exclude 4 clustered indexes (called out by table name). Someone intentionally
-*				set these to a clustered property for a reason, so leave them that way. 
+* Description:		Convert all existing ROWID indexes to clustered. 
+*			Retain primary key and unique attribute in all cases. 
+*			Exclude 4 clustered indexes (called out by table name). Someone intentionally
+*			set these to a clustered property for a reason, so leave them that way. 
 * Date:			03/08/2018
 ********************************************************************************************/
 
