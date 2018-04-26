@@ -32,4 +32,5 @@ GO
 sp_spaceused 'SEED.AUDITH';
 
 -- Clean up audit records
---DELETE SEED.AUDITH WHERE SEQ_0 >= 50000;
+-- DELETE SEED.AUDITH WHERE SEQ_0 >= 50000;
+-- DROP SEQUENCE SEED.seqAudit;
