@@ -1,0 +1,13 @@
+# Create a random number and present it for a choice
+# Remember the choice and display it back within an infbox
+Local Integer CHOICE, NUMBERS(1..3)
+NUMBERS(1) = rnd(10)*100
+NUMBERS(2) = rnd(10)*100
+NUMBERS(3) = rnd(10)*100
+
+Selbox num$(NUMBERS(1)), num$(NUMBERS(2)), num$(NUMBERS(3)) Titled "Choose" Using  CHOICE
+Case CHOICE
+  When 1 : Infbox num$(NUMBERS(1))
+  When 2 : Infbox num$(NUMBERS(2))
+  When 3 : Infbox num$(NUMBERS(3))
+Endcase
