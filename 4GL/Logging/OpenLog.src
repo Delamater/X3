@@ -1,0 +1,6 @@
+Local Integer RETTRACE 
+RETTRACE =openlog('TRA',5) 
+
+# The code you want to trace 
+
+RETTRACE=CloseLog()
