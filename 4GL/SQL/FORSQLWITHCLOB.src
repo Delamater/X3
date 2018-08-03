@@ -1,0 +1,19 @@
+#**
+#* Use this technique of a SQL_CLOB and Setlob to be able to write your sql easier.
+#* Append works nicely here to save valuable keystrokes on your keyboard
+#*!
+Local Clbfile SQL_CLOB(5)
+Local Char SQL_REQ(255)(20)
+Local Char RES1
+SQL_CLOB = "SELECT BAN_0 FROM SEED.ABANK"
+Append SQL_CLOB, " ORDER BY BAN_0"
+
+# Assign to a char array the value of SQL_CLOB
+Setlob SQL_REQ With SQL_CLOB
+
+# CHAR(RES(80(1)) will create an array of results 
+For (Char RES(80)(1)) From "5" Sql SQL_REQ As [REQ]
+  RES1 = num$([F:REQ]RES(0))
+  Infbox num$(RES1)
+Next
+End
