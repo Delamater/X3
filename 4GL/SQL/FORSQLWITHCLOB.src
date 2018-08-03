@@ -1,3 +1,8 @@
+Call GETBANKRECORDS
+Call GETDBSIZE
+End
+
+$GETBANKRECORDS
 #**
 #* Use this technique of a SQL_CLOB and Setlob to be able to write your sql easier.
 #* Append works nicely here to save valuable keystrokes on your keyboard
@@ -11,9 +16,47 @@ Append SQL_CLOB, " ORDER BY BAN_0"
 # Assign to a char array the value of SQL_CLOB
 Setlob SQL_REQ With SQL_CLOB
 
-# CHAR(RES(80(1)) will create an array of results 
+# CHAR(RES(80(1)) will create an array of results
 For (Char RES(80)(1)) From "5" Sql SQL_REQ As [REQ]
   RES1 = num$([F:REQ]RES(0))
   Infbox num$(RES1)
 Next
 End
+Return
+
+$GETDBSIZE
+#**
+#* Use this technique of a SQL_CLOB and Setlob to be able to write your sql easier.
+#* Append works nicely here to save valuable keystrokes on your keyboard
+#*!
+Local Clbfile SQL_CLOB(5)
+Local Char SQL_REQ(255)(20)
+Local Char RES1
+SQL_CLOB = "SELECT "
+Append SQL_CLOB, "STR( "
+Append SQL_CLOB, "    CONVERT(DEC(15,2), "
+Append SQL_CLOB, "      (sum(CONVERT(BIGINT,Case When status & 64 = 0 Then SIZE Else 0 End)) + "
+Append SQL_CLOB, "      sum(CONVERT(BIGINT,Case When status & 64 <> 0 Then SIZE Else 0 End)))) "
+Append SQL_CLOB, "      * 8192 / 1048576, "
+Append SQL_CLOB, "    15,2), "
+Append SQL_CLOB, "    CONVERT(VARCHAR(2),DATABASEPROPERTYEX(DB_NAME(),'IsAutoCreateStatistics')) IsAutoCreateStatistics,"
+Append SQL_CLOB, "    CONVERT(VARCHAR(2),DATABASEPROPERTYEX(DB_NAME(),'IsAutoUpdateStatistics')) IsAutoUpdateStatistics "
+Append SQL_CLOB, "From dbo.sysfiles"
+
+
+# Assign to a char array the value of SQL_CLOB
+Setlob SQL_REQ With SQL_CLOB
+
+# CHAR(RES(80(1)) will create an array of results
+For (Char SIZE, Char CREATESTATS, Char UPDATESTATS) From "5" Sql SQL_REQ As [REQ]
+  RES1 = num$([F:REQ]SIZE)
+  RES2 = num$([F:REQ]CREATESTATS)
+  RES3 = num$([F:REQ]UPDATESTATS)
+  Infbox "Database size: "-RES1 + " IsAutoCreateStatistics: "-CREATESTATS + " IsAutoUpdateStatistics: "-UPDATESTATS
+
+  #Infbox num$(RES1)
+  #Infbox num$(RES2)
+  #Infbox num$(RES3)
+Next
+End
+Return
