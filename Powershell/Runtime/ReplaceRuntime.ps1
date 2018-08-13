@@ -1,6 +1,8 @@
+#requires -RunAsAdministrator
+
 # Path set up
 $source = "D:\WorkingFolder\runtime\vers\x64\*"
-$dest = "C:\Sage\X3ERPV11\Runtime\bin\"
+$dest = "C:\Sage\X3ERPV11\Runtime\bin\*"
 $svc1 = Get-Service 'Agent Sage Syracuse - NODE0'
 $svc2 = Get-Service X3ERPV11RUN
 $allFiles = $true
@@ -22,7 +24,8 @@ switch ($allFiles)
     $true
     {
         # Copy files needed after the build
-        Copy-Item -Destination $dest -Path $source -Recurse 
+        # Remove asterisk at the end of the path
+        Copy-Item -Destination $dest.Substring(0,$dest.Length-1) -Path $source -Recurse 
     }
     $false
     {
