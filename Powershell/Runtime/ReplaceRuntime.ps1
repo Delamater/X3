@@ -3,9 +3,11 @@
 # Path set up
 $source = "D:\WorkingFolder\runtime\vers\x64\*"
 $dest = "C:\Sage\X3ERPV11\Runtime\bin\*"
+$tmpFolder = "C:\Sage\X3ERPV11\Runtime\tmp\*"
 $svc1 = Get-Service 'Agent Sage Syracuse - NODE0'
 $svc2 = Get-Service X3ERPV11RUN
 $allFiles = $true
+$clearLogFiles = $true
 
 #Stop service
 Stop-Service -DisplayName $svc1.DisplayName
@@ -36,7 +38,13 @@ switch ($allFiles)
     }
 }
 
+if ($clearLogFiles -eq $true)
+{
+    Remove-Item -Path $tmpFolder -Recurse -Exclude "start_log"
+}
 
 #Start services and restart
 Start-Service -DisplayName $svc1.DisplayName
 Start-Service -DisplayName $svc2.DisplayName
+
+Write-Host "Done"
