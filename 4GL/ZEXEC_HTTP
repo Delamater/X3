@@ -1,0 +1,118 @@
+#******************************************************************************
+#* Author: Bob Delamater
+#* Desc: Inject a sales order document with a variable number of lines using
+#* the developer.sage.com method.
+#* Leverage EXEC_HTTP to perform this. 4GL will make a SOAP call directly
+#* into Syracuse classic SOAP web services.
+#*
+#* If the result is good, return success.
+#*
+#*****************************************************************************!
+#*!
+
+Local Integer ASTATUS, CREATION_STATUS, TIMING_STATUS, RET_OPENLOG
+Local Clbfile RESHEAD, RESBODY
+Local Char SOMELOG
+
+# Build the arguments for the call
+Gosub BUILD_ARGUMENTS
+
+
+# Optionally proile the code
+#TIMING_STATUS = func ASYRTIMING.START("", 1)
+RET_OPENLOG = openLog('TRA',12)
+  # Call EXEC_HTTP passing in the header, authorization and retrieve the result header and body
+  ASTATUS = func ASYRWEBSER.EXEC_HTTP(HEADERCOD, HEADERVAL, BODY, RESHEAD, RESBODY)
+RET_OPENLOG = CloseLog()
+#TIMING_STATUS = func ASYRTIMING.STOP(GACTX, "", 1, SOMELOG)
+
+If ASTATUS <> 200
+  Call ERREUR("HTTP Call failed. ASTATUS: " + num$(ASTATUS)) From GESECRAN
+Else
+
+  CREATION_STATUS = instr(1,RESBODY, "Creation of NA01118SON")
+
+  If CREATION_STATUS
+    Call MESSAGE("Success") From GESECRAN
+  Else
+    Call ERREUR("Creation failed: " + num$(ASTATUS)) From GESECRAN
+  Endif
+
+Endif
+
+End
+
+$BUILD_ARGUMENTS
+#Infbox "Building args" # Used for halting for a breakpoint if necessary
+Local Char HEADERCOD(64)(5)
+Local Char HEADERVAL(255)(5)
+
+HEADERCOD(0) = "url"
+HEADERVAL(0) = "http://YourHostHere:8124/soap-generic/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC"
+
+HEADERCOD(1) = "method"
+HEADERVAL(1) = "POST"
+
+HEADERCOD(2) = "authorization"
+HEADERVAL(2) = "Basic Qk9ERUw6Qk9ERUw=" # Find this from a trace in Firefox or your tool of choice
+
+HEADERCOD(3) = "SOAPAction"
+HEADERVAL(3) = "saveRequest"
+
+Local Clbfile BODY(0), HEADER
+Local Clbfile LINES(5)
+HEADER = func GET_SOH_HEADER
+LINES = func GET_SOH_LINES(295)
+
+Append BODY, '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wss="http://www.adonix.com/WSS" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.o'
+&  + 'rg/2001/XMLSchema-instance">'
+Append BODY, '    <soapenv:Header/>'
+Append BODY, '    <soapenv:Body>'
+Append BODY, '        <wss:run soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
+Append BODY, '            <callContext xsi:type="wss:CAdxCallContext">'
+Append BODY, '                <codeLang xsi:type="xsd:string">ENG</codeLang>'
+Append BODY, '                <poolAlias xsi:type="xsd:string">BOB</poolAlias>'
+Append BODY, '                <poolId xsi:type="xsd:string"/>'
+Append BODY, '                <requestConfig xsi:type="xsd:string">'
+Append BODY, '                    <![CDATA[adxwss.optreturn=JSON&adxwss.beautify=true]]>'
+Append BODY, '                </requestConfig>'
+Append BODY, '            </callContext>'
+Append BODY, '            <publicName xsi:type="xsd:string">AOWSIMPORT</publicName>'
+Append BODY, '            <inputXml xsi:type="xsd:string">'
+Append BODY, '                <![CDATA[{'
+Append BODY, '                    "GRP1": {'
+Append BODY, '                        "I_MODIMP": "SOH",'
+Append BODY, '                        "I_AOWSTA": "NO",'
+Append BODY, '                        "I_EXEC": "REALTIME",'
+Append BODY, '                        "I_RECORDSEP": "|",'
+Append BODY,
+& '                        "I_FILE": "' + HEADER + LINES + '|END"'
+Append BODY, '                    }'
+Append BODY, '                }]]>'
+Append BODY, '            </inputXml>'
+Append BODY, '        </wss:run>'
+Append BODY, '    </soapenv:Body>'
+Append BODY, '</soapenv:Envelope>'
+
+
+Return
+
+#**
+#* Get Sales Order Header line
+#*!
+Funprog GET_SOH_HEADER
+End "E;NA011;SON;;NA005;20180129;;NA011;USD;;;;;"
+
+#**
+#* Generate a number of sales order lines. Pass in the number of lines requested
+#*
+#* @param NUMBER_OF_LINES
+#*!
+Funprog GET_SOH_LINES(NUMBER_OF_LINES)
+Value Integer NUMBER_OF_LINES
+Local Clbfile LINES(5)
+
+For I = 1 To NUMBER_OF_LINES
+  Append LINES, "|L;DIS001;Standard keyboard;UN;1;18.8212;0.75;0;0;;"
+Next
+End LINES
