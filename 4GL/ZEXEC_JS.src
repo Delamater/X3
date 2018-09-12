@@ -36,7 +36,7 @@ Endif
 End
 
 $BUILD_ARGUMENTS
-Infbox "Building args"
+#Infbox "Building args" # Used for halting for a breakpoint if necessary
 Local Char HEADERCOD(64)(5)
 Local Char HEADERVAL(255)(5)
 
