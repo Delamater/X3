@@ -30,3 +30,47 @@ Local Char SUFFIX (10)
 SUFFIX = sigma(1, 1+int(rnd(20)), chr$(int(rnd(25)+ascii("A"))))
 
 End SUFFIX
+
+
+#**
+#* Download a file somewhere on the system to the client
+#*
+#* @param FVOL The volume of the path. Example: TRA
+#* @param FNAME The name of the file. Example: F1333
+#* @param FEXT The extension of the file. Example: tra
+#*!
+Subprog DOWNLOAD_FILE(FVOL, FNAME, FEXT)
+Value Char FVOL
+Value Char FNAME
+Value Char FEXT
+
+  Local Char PATH(240), EXPORT_FILE_NAME(10), FULL_FILE_NAME(14)
+  Local Integer STAT
+  Raz EXPORT_FILE_NAME, FULL_FILE_NAME, PATH
+
+  EXPORT_FILE_NAME = FNAME
+  # Get path to file, copy it to the client and provide feedback
+  PATH = filpath(FVOL,FNAME,FEXT)
+
+  # Does the file exist and have contents?
+  If filinfo(PATH,7) > 0
+
+    FULL_FILE_NAME = EXPORT_FILE_NAME + "." + FEXT
+
+    # COPCLI doesn't support copying a file that doesn't exist
+    Call COPCLI(PATH,FULL_FILE_NAME,STAT) From ORDSYS
+
+    # Check for SDATA transfer error: 0 = Success, 1 = Warning, All Else = Error
+    Case STAT
+      When 0: # Do nothing, we have no problem, file will download
+      When 1: Call WARNING(mess(141,167,1),WCLI_OK) From GESECRAN
+      When Default: Call ERREUR(mess(141,167,1)) From GESECRAN
+    Endcase
+
+  Else
+
+    ### FILE DOES NOT EXIST ###
+    Call ERREUR(EXPORT_FILE_NAME + "." + FILETYPE + " file does not exist.") From GESECRAN
+
+  Endif
+End
