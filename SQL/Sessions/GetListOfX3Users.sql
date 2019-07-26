@@ -2,7 +2,6 @@ Select
 	X3SM1.SESSIONID_0 as 'Session_ID', 
 	X3SM0.SESSIONTYPE_0,  
 	X3SM1.DBIDENT1_0 as 'SPID', 
-	sp.hostprocess as 'Profiler ClientProcessID',
 	X3SM1.DBIDENT2_0, 
 	X3SM1.CREUSR_0, 
 	X3SM1.UPDTICK_0, 
@@ -26,6 +25,4 @@ from X3.ASYSSMDBASSO X3SM1
 	JOIN  sys.dm_exec_connections VDS 
 		ON VDS.session_id = convert(integer, X3SM1.DBIDENT1_0) 
 			and VDS.connect_time = convert(datetime, X3SM1.DBIDENT2_0, 121 ) 
-	JOIN sys.sysprocesses sp
-		ON VDS.session_id = sp.spid
 WHERE X3SM0.FOLD_0='<X3 Folder Name, SYSNAME, SEED>' --and X3SM0.ALOGIN_0='<X3 User Login, NVARCHAR(40), admin>'
