@@ -1,0 +1,221 @@
+#<AdxTL>@(#)0.0.0.0 $Revision$
+Local Char MSG(250)
+#Gosub STANDARD_FOR
+#Gosub FOR_HINT_KEY
+#Gosub FOR_HINT_KEY_EXPRESSION
+#Gosub FOR_HINT_KEY_WHERE
+#Gosub FOR_NOHINT
+Gosub STANDARD_LOOK
+Gosub LOOK_WITH_NOHINT
+Gosub FOR_WHERE_NOHINT
+#Gosub FOR_COLUMNS_NOHINT_WHERE
+#Infbox "done"
+End
+
+#Local Integer MYERR
+#Local Mask SQLTRA0 [SQL0], SQLTRA1 [SQL1]
+#Local Mask SQLTRA1 [SQL2]
+#Call START_SQL_TRACE(MYERR)
+#
+#If MYERR : Infbox "Error code: "-num$(MYERR): Return: Endif
+#
+#
+#Call STOP_SQL_TRACE
+#
+#Gosub FIN
+#End
+
+$STANDARD_FOR
+  #Call START()
+  MSG = "STANDARD_FOR START"
+  Call MARK_LOG(MSG)
+  Local File ITMMASTER [ITM]
+  Local Integer I
+  Filter [ITM] Where ITMREF="BMS023"
+  For [ITM]ITM0
+    #Infbox [ITM]SEAKEY
+    I += 1
+  Next
+  Filter [ITM]
+  #Call ARRET From SQLTRA
+  LogicClose File [ITM]
+
+  MSG = "STANDARD_FOR END"
+  Call MARK_LOG(MSG)
+Return
+
+$FOR_HINT_KEY
+  #Call START()
+  MSG = "FOR_HINT_KEY START"
+  Call MARK_LOG(MSG)
+  Local File ABICOND [ABI]
+  Local Integer I
+  Filter [ABI] Where COD="IMFCPERIOD"
+  For [ABI]AII0 Hint Key AII1
+    #Infbox [ITM]SEAKEY
+    I += 1
+  Next
+  Filter [ABI]
+  #Call ARRET From SQLTRA
+  LogicClose File [ABI]
+
+  MSG = "FOR_HINT_KEY END"
+  Call MARK_LOG(MSG)
+Return
+
+$FOR_HINT_KEY_EXPRESSION
+  Local File AFONCTION [AFC]
+  Local Integer I
+  MSG = "FOR_HINT_KEY_EXPRESSION"
+  Call MARK_LOG(MSG)
+  For [AFC]CODEXT Hint Key EXPRESSIONS #???
+    #Infbox [ITM]ITMREF
+    I += 1
+  Next
+  LogicClose File [AFC]
+Return
+
+$FOR_HINT_KEY_WHERE
+  Local File ALOGIN [ALO]
+  Local Integer I
+
+  MSG = "FOR_HINT_KEY_WHERE START"
+  Call MARK_LOG(MSG)
+
+  For [ALO]ALO1 Hint Key ALO2 Where SEQ=369585
+    #Infbox [ITM]ITMREF
+    I += 1
+  Next
+
+  LogicClose File [ALO]
+
+  MSG = "FOR_HINT_KEY_WHERE END"
+  Call MARK_LOG(MSG)
+Return
+
+$FOR_NOHINT
+  Local File APATCH [APT]
+  Local Integer I
+
+  MSG = "FOR_NOHINT START"
+  Call MARK_LOG(MSG)
+
+  For [APT]APT0 With Nohint
+    I += 1
+  Next
+
+  LogicClose File [APT]
+
+  MSG = "FOR_NOHINT END"
+  Call MARK_LOG(MSG)
+Return
+
+$FOR_WHERE_NOHINT
+  Local File AUDITH [AUD]
+  Local Integer I
+
+  MSG = "FOR_WHERE_NOHINT START"
+  Call MARK_LOG(MSG)
+
+  For [AUD]AUD0 Where SEQ=2 With Nohint
+    I += 1
+  Next
+
+  LogicClose File [AUD]
+
+  MSG = "FOR_WHERE_NOHINT END"
+  Call MARK_LOG(MSG)
+
+Return
+
+$FOR_COLUMNS_NOHINT_WHERE
+  Local File ATABLE [ATB]
+  Local Integer I
+
+  MSG = "FOR_COLUMNS_NOHINT_WHERE START"
+  Call MARK_LOG(MSG)
+
+  Columns [ATB](ABRFIC,CODFIC)
+  For [ATB]ABRFIC Where ABRFIC = "ATB" With Nohint
+    #Infbox [ITM]ITMREF
+    I += 1
+  Next
+  Columns [ATB]
+  LogicClose File [ATB]
+
+  MSG = "FOR_COLUMNS_NOHINT_WHERE END"
+  Call MARK_LOG(MSG)
+Return
+
+$STANDARD_LOOK
+  Local File ABANK [ABN]
+
+  MSG = "STANDARD_LOOK START"
+  Call MARK_LOG(MSG)
+
+  Look [ABN]ABN0='PT';'BCP'
+
+  MSG = "STANDARD_LOOK END"
+  Call MARK_LOG(MSG)
+  LogicClose File [ABN]
+
+Return
+
+$LOOK_WITH_NOHINT
+  Local File ABANK [ABN]
+
+  MSG = "LOOK_WITH_NOHINT START"
+  Call MARK_LOG(MSG)
+
+  Look [ABN]ABN0='PT';'BCP' With Nohint
+
+  MSG = "LOOK_WITH_NOHINT END"
+  Call MARK_LOG(MSG)
+
+  LogicClose File [ABN]
+
+Return
+
+
+Subprog START
+  If dim(GSQLTRA)<0 : End : Endif
+  If dim(GSQLIDTRA)<0 : End : Endif
+  If GSQLIDTRA = 0 : GSQLTRA="" : Endif
+  If GSQLTRA="" : Call ACTIVE From SQLTRA : Endif
+End
+
+
+##**
+##* Start SQL Trace
+##*
+##* @param ERR
+##*!
+#Subprog START_SQL_TRACE(ERR)
+#Variable Integer ERR
+#  Call EXEC_ACTIVE(ERR) From SQLTRA
+#End
+#
+#Subprog STOP_SQL_TRACE
+#  Call ARRET  From SQLTRA
+#End
+#
+#
+#$FIN
+#Close Mask [SQL0], [SQL1], [SQL2]
+#Return
+
+#**
+#* Mark the profiler log with some message
+#*
+#* @param STRING_MESSAGE The message to write to the log
+#*!
+Subprog MARK_LOG(STRING_MESSAGE)
+Variable Char STRING_MESSAGE
+
+  Local Char REQUEST(250)
+  [L]REQUEST = "Select '"+STRING_MESSAGE + "'"
+  For (Char MYFIELD(250)) From "5" Sql REQUEST As [MYSQL]
+    Infbox MYFIELD
+  Next
+
+End
