@@ -15,9 +15,9 @@ $READ_REC
 Return
 
 $START_TRACE
-If GTYPDBA = 1 : Call ACTIVE From ORATRA : Elsif GTYPDBA = 2 : Call ACTIVE From ORATRA : Endif
+If GTYPDBA = 1 : Call ACTIVE From ORATRA : Elsif GTYPDBA = 2 : Call ACTIVE From SQLTRA : Endif
 Return
 
 $STOP_TRACE
-If GTYPDBA = 2 : Call ARRET From ORATRA : Elsif GTYPDBA = 2 : Call ARRET From SQLTRA : Endif
+If GTYPDBA = 1 : Call ARRET From ORATRA : Elsif GTYPDBA = 2 : Call ARRET From SQLTRA : Endif
 Return
