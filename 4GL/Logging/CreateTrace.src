@@ -1,0 +1,23 @@
+Gosub START_TRACE
+Gosub READ_REC
+Gosub STOP_TRACE
+End
+
+$READ_REC
+  Local Clbfile MYSQL
+  Append MYSQL, "Select 123 FROM ABANK"
+
+  For (Integer NUM1)From "5" Sql MYSQL As [RET]
+    Infbox num$(NUM1)
+  Break
+  Next
+
+Return
+
+$START_TRACE
+If GTYPDBA = 1 : Call ACTIVE From ORATRA : Elsif GTYPDBA = 2 : Call ACTIVE From SQLTRA : Endif
+Return
+
+$STOP_TRACE
+If GTYPDBA = 1 : Call ARRET From ORATRA : Elsif GTYPDBA = 2 : Call ARRET From SQLTRA : Endif
+Return
