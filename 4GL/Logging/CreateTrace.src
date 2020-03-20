@@ -1,3 +1,6 @@
+Local Char TRACE_PROG(50)
+If GTYPDBA = 1 : [L]TRACE_PROG = "ORATRA" : Elsif GTYPDBA = 2 : [L]TRACE_PROG = "SQLTRA" : Endif
+
 Gosub START_TRACE
 Gosub READ_REC
 Gosub STOP_TRACE
@@ -15,9 +18,9 @@ $READ_REC
 Return
 
 $START_TRACE
-If GTYPDBA = 1 : Call ACTIVE From ORATRA : Elsif GTYPDBA = 2 : Call ACTIVE From SQLTRA : Endif
+Call ACTIVE From=[L]TRACE_PROG
 Return
 
 $STOP_TRACE
-If GTYPDBA = 1 : Call ARRET From ORATRA : Elsif GTYPDBA = 2 : Call ARRET From SQLTRA : Endif
+Call ARRET From=[L]TRACE_PROG
 Return
