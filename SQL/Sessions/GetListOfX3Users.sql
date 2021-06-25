@@ -25,4 +25,6 @@ from X3.ASYSSMDBASSO X3SM1
 	JOIN  sys.dm_exec_connections VDS 
 		ON VDS.session_id = convert(integer, X3SM1.DBIDENT1_0) 
 			and VDS.connect_time = convert(datetime, X3SM1.DBIDENT2_0, 121 ) 
-WHERE X3SM0.FOLD_0='<X3 Folder Name, SYSNAME, SEED>' --and X3SM0.ALOGIN_0='<X3 User Login, NVARCHAR(40), admin>'
+WHERE 
+	X3SM0.FOLD_0='<X3 Folder Name, SYSNAME, SEED>' --and X3SM0.ALOGIN_0='<X3 User Login, NVARCHAR(40), admin>'
+	AND X3SM2.SYSTEMID_0 = <adxpid, int, 13904>
